@@ -1,10 +1,21 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "react-apollo";
+import BookList from './BookList'
+
+//apollo client setup
+
+const client = new ApolloClient({
+  uri: "http://localhost:4000/graphql"
+});
+
 
 class App extends Component {
   render() {
     return (
+      <ApolloProvider client={client}>
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
@@ -19,8 +30,10 @@ class App extends Component {
           >
             Learn React
           </a>
+          <BookList />
         </header>
       </div>
+      </ApolloProvider>
     );
   }
 }
